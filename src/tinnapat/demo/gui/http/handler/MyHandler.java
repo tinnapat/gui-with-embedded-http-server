@@ -1,4 +1,4 @@
-package tech.kbtg.demo.gui.http.handler;
+package tinnapat.demo.gui.http.handler;
 
 import java.io.IOException;
 import java.io.OutputStream;

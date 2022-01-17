@@ -1,11 +1,11 @@
-package tech.kbtg.demo.gui;
+package tinnapat.demo.gui;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import tech.kbtg.demo.gui.http.TestServer;
+import tinnapat.demo.gui.http.TestServer;
 
 public class Snippet1 {
 	private static Text text;
