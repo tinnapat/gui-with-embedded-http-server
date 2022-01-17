@@ -1,9 +1,9 @@
-package test;
+package tech.kbtg.demo.gui;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-import test.http.TestServer;
+import tech.kbtg.demo.gui.http.TestServer;
 
 public class Snippet1 {
 

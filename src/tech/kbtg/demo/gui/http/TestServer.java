@@ -1,10 +1,10 @@
-package test.http;
+package tech.kbtg.demo.gui.http;
 
 import java.net.InetSocketAddress;
 
 import com.sun.net.httpserver.HttpServer;
 
-import test.http.handler.MyHandler;
+import tech.kbtg.demo.gui.http.handler.MyHandler;
 
 public class TestServer {
 	
