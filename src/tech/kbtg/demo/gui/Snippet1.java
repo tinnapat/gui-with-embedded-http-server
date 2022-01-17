@@ -10,29 +10,31 @@ import tech.kbtg.demo.gui.http.TestServer;
 public class Snippet1 {
 	private static Text text;
 
-    public static void main (String[] args) throws Exception {
-    	
-        Display display = new Display ();
-        Shell shell = new Shell(display);
-        shell.setText("Snippet 1");
-        
-        text = new Text(shell, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.READ_ONLY);
-        text.setBounds(10, 10, 500, 300);
-        
-        shell.open ();
+	public static void main(String[] args) throws Exception {
 
-        // Start server
-        TestServer testServer = new TestServer();
-    	testServer.startServer();
+		Display display = new Display();
+		Shell shell = new Shell(display);
+		shell.setText("Snippet 1");
 
-        while (!shell.isDisposed ()) {
-            if (!display.readAndDispatch ()) display.sleep ();
-        }
+		text = new Text(shell, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL | SWT.READ_ONLY);
+		text.setBounds(10, 10, 500, 300);
 
-        // Stop server
-        testServer.stopServer();
-        
-        // Dispose view
-        display.dispose ();
-    }
+		shell.open();
+
+		// Start server
+		TestServer testServer = new TestServer();
+		testServer.startServer();
+
+		while (!shell.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}
+
+		// Stop server
+		testServer.stopServer();
+
+		// Dispose view
+		display.dispose();
+	}
 }
