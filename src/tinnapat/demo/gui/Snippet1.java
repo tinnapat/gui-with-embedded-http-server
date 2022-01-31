@@ -5,7 +5,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import tinnapat.demo.gui.http.TestServer;
+import tinnapat.demo.gui.http.DemoServer;
 
 public class Snippet1 {
 	
@@ -23,8 +23,8 @@ public class Snippet1 {
 		shell.open();
 
 		// Start server
-		TestServer testServer = new TestServer();
-		testServer.startServer();
+		DemoServer demoServer = new DemoServer();
+		demoServer.startServer();
 		
 		// Thread to update the text box in the background
 	    Thread updateThread = new Thread() {
@@ -48,7 +48,8 @@ public class Snippet1 {
 	            }
 	        }
 	    };
-	    // background thread
+	    
+	    // Start the background thread
 	    updateThread.setDaemon(true);
 	    updateThread.start();
 	    
@@ -60,7 +61,7 @@ public class Snippet1 {
 		}
 
 		// Stop server
-		testServer.stopServer();
+		demoServer.stopServer();
 
 		// Dispose view
 		display.dispose();

@@ -9,7 +9,7 @@ import com.sun.net.httpserver.HttpHandler;
 
 import tinnapat.demo.gui.CommandQueue;
 
-public class MyHandler implements HttpHandler {
+public class DemoHandler implements HttpHandler {
 
 	private static final String CHARSET = "UTF-8";
 	private static final String HEADER_CONTENT_TYPE = "Content-Type";
@@ -19,7 +19,7 @@ public class MyHandler implements HttpHandler {
 	public void handle(HttpExchange exchange) throws IOException {
 		try {
 			final Headers headers = exchange.getResponseHeaders();
-			headers.set(HEADER_CONTENT_TYPE, String.format("application/json; charset=%s", new String[] { CHARSET }));
+			headers.set(HEADER_CONTENT_TYPE, String.format("application/json; charset=%s", new Object[] { CHARSET }));
 
 			String messageTemplate = "Received %s %s %s from IP address %s";
 			String message = String.format(messageTemplate, 
@@ -30,7 +30,7 @@ public class MyHandler implements HttpHandler {
 			);
 			CommandQueue.add(message);
 			
-			String responseBody = "This is the response";
+			String responseBody = message;
 			final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
 			exchange.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
 
