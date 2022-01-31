@@ -7,6 +7,8 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import tinnapat.demo.gui.CommandQueue;
+
 public class MyHandler implements HttpHandler {
 
 	private static final String CHARSET = "UTF-8";
@@ -19,8 +21,15 @@ public class MyHandler implements HttpHandler {
 			final Headers headers = exchange.getResponseHeaders();
 			headers.set(HEADER_CONTENT_TYPE, String.format("application/json; charset=%s", new String[] { CHARSET }));
 
-			// final String requestMethod = exchange.getRequestMethod().toUpperCase();
-
+			String messageTemplate = "Received %s %s %s from IP address %s";
+			String message = String.format(messageTemplate, 
+					exchange.getRequestMethod().toUpperCase(),
+					exchange.getProtocol(),
+					exchange.getRequestURI(),
+					exchange.getRemoteAddress()
+			);
+			CommandQueue.add(message);
+			
 			String responseBody = "This is the response";
 			final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
 			exchange.sendResponseHeaders(STATUS_OK, rawResponseBody.length);
