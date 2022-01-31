@@ -24,12 +24,12 @@ public class DemoHandler implements HttpHandler {
 			String messageTemplate = "Received %s %s %s from IP address %s";
 			String message = String.format(messageTemplate, 
 					exchange.getRequestMethod().toUpperCase(),
-					exchange.getProtocol(),
-					exchange.getRequestURI(),
+					exchange.getProtocol(), 
+					exchange.getRequestURI(), 
 					exchange.getRemoteAddress()
 			);
 			CommandQueue.add(message);
-			
+
 			String responseBody = message;
 			final byte[] rawResponseBody = responseBody.getBytes(CHARSET);
 			exchange.sendResponseHeaders(STATUS_OK, rawResponseBody.length);

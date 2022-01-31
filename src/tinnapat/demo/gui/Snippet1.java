@@ -8,7 +8,7 @@ import org.eclipse.swt.widgets.Text;
 import tinnapat.demo.gui.http.DemoServer;
 
 public class Snippet1 {
-	
+
 	private static Text text;
 
 	public static void main(String[] args) throws Exception {
@@ -25,35 +25,35 @@ public class Snippet1 {
 		// Start server
 		DemoServer demoServer = new DemoServer();
 		demoServer.startServer();
-		
+
 		// Thread to update the text box in the background
-	    Thread updateThread = new Thread() {
-	        public void run() {
-	            while (true) {
-	    			if (!CommandQueue.isEmpty()) {
-		                Display.getDefault().syncExec(new Runnable() {
-		                    public void run() {
-		                    	while (!CommandQueue.isEmpty()) {
-		                    		text.append(CommandQueue.poll() + "\n");
-		                    	}
-		                    }
-		                });
-	    			}
-	    			
-	                try {
-	                    Thread.sleep(500);
-	                } catch (InterruptedException e) {
-	                    e.printStackTrace();
-	                }
-	            }
-	        }
-	    };
-	    
-	    // Start the background thread
-	    updateThread.setDaemon(true);
-	    updateThread.start();
-	    
-	    // SWT event loop
+		Thread updateThread = new Thread() {
+			public void run() {
+				while (true) {
+					if (!CommandQueue.isEmpty()) {
+						Display.getDefault().syncExec(new Runnable() {
+							public void run() {
+								while (!CommandQueue.isEmpty()) {
+									text.append(CommandQueue.poll() + "\n");
+								}
+							}
+						});
+					}
+
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+
+		// Start the background thread
+		updateThread.setDaemon(true);
+		updateThread.start();
+
+		// SWT event loop
 		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
